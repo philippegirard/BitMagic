@@ -1,31 +1,31 @@
 'use client'
 
 import {useUserInfo} from "@/app/providers/UserProvider";
+import Link from "next/link";
+import {useMagic} from "@/app/providers/MagicProvider";
 
 export default function Layout({children}) {
     const user = useUserInfo()
-    /*
     const { magic } = useMagic()
-    const [loading, setLoading] = useState(true)
 
+    const handleLogout = async (e) => {
+        e.preventDefault()
+        magic.user.logout()
+    }
 
-    useEffect(() => {
-
-    }, []);
-
-     */
-    // const metadata = await magic?.user.getInfo();
-    // const publicAddress = metadata.publicAddress;
-
-    console.log("layout:", user)
+    const showWalletUI = async (e) => {
+        e.preventDefault()
+        magic.wallet.showUI()
+    }
 
     return (
         <section>
             <div className="header">
-                <h1>BitMagic</h1>
+                <h1><Link href="/app/dashboard">BitMagic</Link></h1>
                 <div className="user-info">
-                    <div>Address: <span className="monoFont">{user.publicAddress}</span></div>
-                    <div>Email: <span className="monoFont">{user.email}</span></div>
+                    <div>Address: <a href="#" onClick={showWalletUI} className="monoFont">{user?.publicAddress}</a></div>
+                    <div>Email: <span className="monoFont">{user?.email}</span></div>
+                    <a href="#" onClick={handleLogout}>Logout</a>
                 </div>
             </div>
             {children}
