@@ -1,5 +1,6 @@
 import {useEffect} from "react";
 import {useMagic} from "@/app/providers/MagicProvider";
+import LoadingDots from "@/app/components/LoadingDots";
 
 export const WaitForMagicProvider = ({ children }) => {
     const { magic } = useMagic()
@@ -13,7 +14,7 @@ export const WaitForMagicProvider = ({ children }) => {
     }, [magic]);
 
     if (!magic) {
-        return <h1>Waiting for Magic</h1>
+        return <h1>Initialization<LoadingDots/></h1>
     }
 
     return <>{children}</>;

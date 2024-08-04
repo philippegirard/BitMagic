@@ -3,10 +3,7 @@
 import {useMagic} from "@/app/providers/MagicProvider";
 
 export default function Page() {
-    const { magic } = useMagic();
-
-
-    magic.wallet.connectWithUI()
+    // const { magic } = useMagic();
 
     /*
 const web3 = new Web3(magic.rpcProvider);
