@@ -6,23 +6,28 @@ export const UserContext = createContext(null);
 
 export const UserProvider = ({ children }) => {
     const { magic } = useMagic();
-    const [user, setUser] = useState(null);
+    const [userInfo, setUserInfo] = useState(null);
 
     useEffect(() => {
-        if (magic) {
-            magic.user.getInfo().then(setUser);
+        async function waitAndSetUser() {
+            const userInfo = await magic.user.getInfo();
+            setUserInfo(userInfo);
         }
+
+        waitAndSetUser()
     }, [magic]);
 
-    if (!user) {
+    if (!userInfo) {
         return <h1>Loading User<LoadingDots/></h1>;
     }
 
+    console.log("userInfo:", userInfo)
+
     return (
-        <UserContext.Provider value={user}>
+        <UserContext.Provider value={userInfo}>
             {children}
         </UserContext.Provider>
     );
 };
 
-export const useUser = () => useContext(UserContext);
+export const useUserInfo = () => useContext(UserContext);
