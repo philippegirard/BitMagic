@@ -1,12 +1,29 @@
-// `app/dashboard/page.tsx` is the UI for the `/dashboard` URL
-import Link from "next/link";
+'use client';
+
+import {useMagic} from "@/app/providers/MagicProvider";
 
 export default function Page() {
+    const { magic } = useMagic();
+
+
+    magic.wallet.connectWithUI()
+
+    /*
+const web3 = new Web3(magic.rpcProvider);
+const metadata = await magic?.user.getInfo();
+const publicAddress = metadata.publicAddress;
+const balance = await web3.eth.getBalance(publicAddress);
+console.log(balance)
+
+
+const metadata = await magic?.user.getInfo();
+const publicAddress = metadata.publicAddress;
+const balance = await web3.eth.getBalance(publicAddress);
+
+ */
+
     return <>
-        <h1>Hello, Dashboard Page!</h1>
-        <ul>
-            <li><Link href="/dashboard/settings">Settings</Link></li>
-        </ul>
+        <h1>Login Page</h1>
     </>
 
 }
