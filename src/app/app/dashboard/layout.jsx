@@ -3,14 +3,17 @@
 import {useUserInfo} from "@/app/providers/UserProvider";
 import Link from "next/link";
 import {useMagic} from "@/app/providers/MagicProvider";
+import { useRouter } from 'next/navigation'
 
 export default function Layout({children}) {
     const user = useUserInfo()
     const { magic } = useMagic()
+    const router = useRouter()
 
     const handleLogout = async (e) => {
         e.preventDefault()
-        magic.user.logout()
+        await magic.user.logout()
+        router.push("/");
     }
 
     const showWalletUI = async (e) => {
