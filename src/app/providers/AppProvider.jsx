@@ -1,17 +1,17 @@
 'use client'
 
 import {MagicProvider} from './MagicProvider';
-import {WaitForMagicProvider} from "@/app/providers/WaitForMagicProvider";
 import {LoginProvider} from "@/app/providers/LoginProvider";
+import {UserProvider} from "@/app/providers/UserProvider";
 
 export default function AppProvider({children}) {
     return (
         <MagicProvider>
-            <WaitForMagicProvider>
-                <LoginProvider>
+            <LoginProvider>
+                <UserProvider>
                     {children}
-                </LoginProvider>
-            </WaitForMagicProvider>
+                </UserProvider>
+            </LoginProvider>
         </MagicProvider>
     )
 }

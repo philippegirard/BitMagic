@@ -1,3 +1,5 @@
+import LoadingDots from "@/app/components/LoadingDots";
+
 const { Magic: MagicBase } = require('magic-sdk');
 const { createContext, useContext, useEffect, useMemo, useState } = require('react');
 const {getNetworkUrl, getChainId} = require("@/app/lib/networks");
@@ -29,6 +31,10 @@ export const MagicProvider = ({ children }) => {
             magic,
         };
     }, [magic]);
+
+    if (!magic) {
+        return <h1>Initializing<LoadingDots/></h1>
+    }
 
     return <MagicContext.Provider value={value}>{children}</MagicContext.Provider>;
 };
